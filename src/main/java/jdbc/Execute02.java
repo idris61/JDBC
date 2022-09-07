@@ -9,6 +9,8 @@ public class Execute02 {
       Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techproed","postgres","Salih61");
       Statement st = con.createStatement();
 
+      //-/-/-/!!! çalışma yapacapımız country tablosu techproed query sinde olduğu için yukarıya techproed yazdım.
+
       // 1. Örnek:  region id'si 1 olan "country name" değerlerini çağırın.
 
       String sql1 = "SELECT country_name FROM countries WHERE region_id = 1";

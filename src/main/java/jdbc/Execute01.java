@@ -26,25 +26,32 @@ public class Execute01 {
 
         // 4. Adım : Query çalıştır.
 
-        // 1.Example: "workers" adında bir table oluşturup "worker_id,worker_name, worker_salary" sütunlarını ekleyin.
+        // 1. Örnek: "workers" adında bir table oluşturup "worker_id,worker_name, worker_salary" sütunlarını ekleyin.
 
         String sql1 = "CREATE TABLE workers(worker_id VARCHAR(50), worker_name VARCHAR(50), worker_salary INT)";
-        // method içerisinde bu kadar uzun cod kullanmamak için string value ya atama yaptık.
+            // Bu komuttan sonda intellij yi çalıştırınca postgresql de workers isminde tablo oluşur
+            // method içerisinde bu kadar uzun cod kullanmamak için string value ya atama yaptık.
 
         boolean result = st.execute(sql1);
         System.out.println(result);  // false return yapar, çünkü data çağırmadı.
 
-        // 2.Örnek: Table'a worker_address sütunu ekleyerel alter yapın.
+       // 2.Örnek: Table'a worker_address sütunu ekleyerel alter yapın.
+               // 1. örnekte tablo oluşturduğumuz için yeni yapacağımız işlemde hata alırız.
+               // yeni işlem öncessi drop table ile tabloyu sql den silmeliyiz.
+               // yada 1.Örnek da yazdığımız tablo oluşturma komutunu yorum içerisine almalıyız.
+               // yoruma almazsak bu komuttan sonra çalıştırırsak tablo zaten var diye uyarı alırız.
+           String sql2 = "ALTER TABLE workers ADD worker_address VARCHAR(80)";
+           st.execute(sql2);
 
-                // 1. örnekte tablo oluşturduğumuz için yeni yapacağımız işlemde hata alırız.
-                // yeni işlem öncessi drop table ile tabloyu sql den silmeliyiz.
-
-        String sql2 = "ALTER TABLE workers ADD worker_address VARCHAR(80)";
-        st.execute(sql2);
+              // bu komut çalıştıktan sonra postgresql de workers tablosuna worker_address sütunu eklenmiş olur.
 
         // 3.Örnek: Drop workers table
-        String sql3 = "DROP TABLE workers";  // drop table'ı sql yerine bu şekilde de yapabiliriz.
-        st.execute(sql3);
+    //    String sql3 = "DROP TABLE workers";  // drop table'ı sql yerine bu şekilde de yapabiliriz.
+    //    st.execute(sql3);
+
+        // 1.Örnek ve 2.Örnek satırları yoruma alınıp 3.Örnek kodları çalıştırılırsa
+        // postgresql de oluşturduğumuz workers tablosunu silmiş oluruz.
+
 
         // 5. Adım : Bağlantı ve Statement'i kapat
         con.close();
